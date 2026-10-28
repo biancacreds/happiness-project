@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happiness Project — A Little Dose of Stupid</title>
+  <meta name="description" content="A random joke generator that makes people laugh with terrible puns, dad jokes, silly one-liners, and playful roasts.">
+  
+  <!-- Google Fonts: Bangers (Retro Comic) & Fredoka (Playful Rounded Neobrutalist) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤡</text></svg>">
+</head>
+<body>
+
+  <!-- Fullscreen Particle Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="app-container">
+
+    <!-- Top Retro Marquee Ticker -->
+    <aside class="top-ticker" aria-label="Funny Announcements">
+      <div class="ticker-content">
+        <span>⚠️ WARNING: HIGH CRINGE LEVELS DETECTED</span>
+        <span>🧠 BRAINCELL DEDUCTION IN PROGRESS</span>
+        <span>🍕 100% ORGANIC DAD JOKES</span>
+        <span>💀 PROCEED AT YOUR OWN RISK</span>
+        <span>📢 ZERO MEDICAL BENEFIT GUARANTEED</span>
+        <span>🤡 SIDE EFFECTS INCLUDE GROANING & EYE ROLLING</span>
+        <span>⚠️ WARNING: HIGH CRINGE LEVELS DETECTED</span>
+        <span>🧠 BRAINCELL DEDUCTION IN PROGRESS</span>
+        <span>🍕 100% ORGANIC DAD JOKES</span>
+      </div>
+    </aside>
+
+    <!-- Site Header & Navigation -->
+    <header class="site-header">
+      <a href="#" class="brand" id="brandHomeLink" title="Happiness Project Home">
+        <div class="brand-icon-box" aria-hidden="true">🤡</div>
+        <div class="brand-text">
+          <h1 class="brand-title">HAPPINESS PROJECT</h1>
+          <span class="brand-subtitle">✨ A Little Dose of Stupid</span>
+        </div>
+      </a>
+
+      <!-- View Switcher & Action Controls -->
+      <nav class="nav-actions" aria-label="Main Navigation">
+        <div class="view-tabs" role="tablist">
+          <button class="view-tab-btn active" id="tabGenerator" role="tab" aria-selected="true" aria-controls="generatorView">
+            <span>🎲</span> Joke Machine
+          </button>
+          <button class="view-tab-btn" id="tabFavourites" role="tab" aria-selected="false" aria-controls="favouritesView">
+            <span>⭐</span> Cringe Vault <span class="badge-counter" id="favCountBadge">0</span>
+          </button>
+        </div>
+
+        <button class="neo-btn neo-btn-pill" id="soundToggleBtn" title="Toggle Sound FX" aria-label="Toggle Sound Effects">
+          <span id="soundIcon">🔊</span> <span id="soundStatusText">Sound On</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- ====================================================================
+         VIEW 1: JOKE GENERATOR (MAIN HOME VIEW)
+         ==================================================================== -->
+    <main id="generatorView" class="view-panel active" role="tabpanel">
+
+      <!-- Hero Section with Requested Heading -->
+      <section class="hero-section">
+        <!-- Floating Comic Stickers -->
+        <div class="comic-badge-float badge-pow" aria-hidden="true">💥 POW!</div>
+        <div class="comic-badge-float badge-cringe" aria-hidden="true">😭 100% UNHINGED</div>
+
+        <div class="hero-sticker-badge">🚨 Clinical Trial #404: Laughter Prescribed</div>
+        <h2 class="hero-title">Having a bad day? Let's make it worse. (With jokes.)</h2>
+        <p class="hero-subtitle">
+          Your daily pitstop for <span class="tagline-highlight">terrible puns</span>, <span class="tagline-highlight">groaner dad jokes</span>, and <span class="tagline-highlight">playful roasts</span>.
+        </p>
+      </section>
+
+      <!-- Joke of the Day Section -->
+      <section class="daily-joke-card" aria-label="Joke of the Day">
+        <div class="daily-joke-header">
+          <div class="daily-tag-group">
+            <span class="daily-pill">📰 JOKE OF THE DAY</span>
+            <span class="daily-stamp">FRESHLY BAKED CRINGE</span>
+          </div>
+          <div class="joke-author-info" id="dailyJokeDate">📅 Today's Special</div>
+        </div>
+
+        <div class="daily-joke-body" id="dailyJokeSetup">
+          Loading daily dose of nonsense...
+        </div>
+
+        <div class="daily-joke-punchline" id="dailyJokePunchline">
+          ...
+        </div>
+
+        <div class="daily-joke-footer">
+          <span id="dailyJokeCategory">Category: Dad Joke</span>
+          <button class="neo-btn neo-btn-sm" id="dailySaveBtn" style="padding: 0.35rem 0.8rem; font-size: 0.82rem;">
+            ⭐ Save to Cringe Vault
+          </button>
+        </div>
+      </section>
+
+      <!-- Category Selector Pills -->
+      <section class="categories-wrapper" aria-label="Filter joke categories">
+        <span class="category-label">Choose your poison:</span>
+        <div class="category-pills" role="radiogroup" aria-label="Joke Categories">
+          <button class="cat-btn active" data-cat="all" role="radio" aria-checked="true">
+            <span>⚡</span> All Chaos
+          </button>
+          <button class="cat-btn" data-cat="dad" role="radio" aria-checked="false">
+            <span>👴</span> Dad Jokes
+          </button>
+          <button class="cat-btn" data-cat="pun" role="radio" aria-checked="false">
+            <span>🥐</span> Silly Puns
+          </button>
+          <button class="cat-btn" data-cat="roast" role="radio" aria-checked="false">
+            <span>🔥</span> Roast Me
+          </button>
+        </div>
+      </section>
+
+      <!-- Main Joke Generator & Massive Action Button -->
+      <section class="generator-stage">
+        
+        <button class="big-laugh-btn" id="generateJokeBtn" aria-label="Generate a random joke">
+          <span class="btn-emoji-bounce" aria-hidden="true">😂</span>
+          <span>MAKE ME LAUGH 😂</span>
+        </button>
+        
+        <p class="btn-caption">
+          <span>👇</span> Click for instant dopamine or permanent regret <span>👇</span>
+        </p>
+
+        <!-- The Main Comic Joke Card -->
+        <article class="joke-card-container">
+          <!-- Comic Bubble Tail pointing to the button -->
+          <div class="bubble-tail" aria-hidden="true"></div>
+
+          <div class="main-joke-card" id="mainJokeCard">
+            <!-- Header Bar -->
+            <div class="card-header-bar">
+              <span class="category-tag tag-dad" id="cardCategoryTag">Dad Joke 👴</span>
+              <span class="joke-id-badge" id="cardJokeId">JOKE #01</span>
+            </div>
+
+            <!-- Setup Text -->
+            <div class="joke-setup" id="cardJokeSetup">
+              Why do programmers prefer dark mode?
+            </div>
+
+            <!-- Punchline Container -->
+            <div class="joke-punchline-box">
+              <div class="joke-punchline-text" id="cardJokePunchline">
+                Because light attracts bugs.
+              </div>
+
+              <!-- Blur Cover (spoiler mode) -->
+              <div class="punchline-blur-cover" id="punchlineBlurCover" style="display: none;">
+                <span>🫣 Tap to expose the cringe</span>
+                <button class="reveal-btn" id="revealPunchlineBtn">REVEAL PUNCHLINE</button>
+              </div>
+            </div>
+
+            <!-- Card Attribution & Action Row -->
+            <div class="card-meta-row">
+              <div class="joke-author-info">
+                <span>🎤 Delivered by:</span> <strong id="cardJokeAuthor">Senior Dev Dad</strong>
+              </div>
+
+              <div class="card-action-btns">
+                <button class="action-icon-btn" id="saveCringeBtn" title="Save this joke to your favourites">
+                  <span id="saveStarIcon">⭐</span>
+                  <span id="saveBtnText">Save the Cringe ⭐</span>
+                </button>
+
+                <button class="action-icon-btn" id="copyJokeBtn" title="Copy joke text to clipboard">
+                  <span>📋</span> Copy
+                </button>
+
+                <button class="action-icon-btn" id="speakJokeBtn" title="Read this joke aloud">
+                  <span>📢</span> Speak
+                </button>
+              </div>
+            </div>
+
+            <!-- Rating System -->
+            <div class="rating-section">
+              <div class="rating-title">
+                <span>💬 How bad was it? Be brutally honest:</span>
+              </div>
+
+              <div class="rating-options">
+                <!-- Option 1: I exhaled -->
+                <button class="rating-btn" data-reaction="exhaled" id="rateExhaledBtn" aria-label="Rate: I exhaled">
+                  <span class="rating-label">I exhaled 💨</span>
+                  <span class="rating-count" id="countExhaled">0 exhales</span>
+                </button>
+
+                <!-- Option 2: Okay, that was good -->
+                <button class="rating-btn" data-reaction="good" id="rateGoodBtn" aria-label="Rate: Okay, that was good">
+                  <span class="rating-label">Okay, that was good 💀</span>
+                  <span class="rating-count" id="countGood">0 skull moments</span>
+                </button>
+
+                <!-- Option 3: I'm crying -->
+                <button class="rating-btn" data-reaction="crying" id="rateCryingBtn" aria-label="Rate: I'm crying">
+                  <span class="rating-label">I'm crying 😭</span>
+                  <span class="rating-count" id="countCrying">0 emotional breakdowns</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Quirky Micro-Widgets / Cringe-O-Meter & Emergency Roast -->
+      <section class="extras-strip">
+        <div class="extra-box">
+          <div class="extra-icon">⏱️</div>
+          <div class="extra-details">
+            <h4>Cringe-O-Meter</h4>
+            <p>Jokes endured this session: <strong id="statJokesEndured">1</strong></p>
+            <div style="font-size: 0.8rem; color: #777;">Estimated braincells lost: <span id="statBraincells">14</span></div>
+          </div>
+        </div>
+
+        <div class="extra-box">
+          <div class="extra-icon">🚨</div>
+          <div class="extra-details">
+            <h4>Emergency Roast Button</h4>
+            <p>In an awkward conversation? Break glass now.</p>
+            <button class="neo-btn neo-btn-pink neo-btn-pill" id="emergencyRoastBtn" style="padding: 0.35rem 0.9rem; font-size: 0.84rem;">
+              Deploy Emergency Roast 🔥
+            </button>
+          </div>
+        </div>
+
+        <div class="extra-box">
+          <div class="extra-icon">🎁</div>
+          <div class="extra-details">
+            <h4>Anti-Boredom Guarantee</h4>
+            <p>100% money-back guarantee (since it's completely free anyway).</p>
+            <button class="neo-btn neo-btn-pill" id="randomizeAllBtn" style="padding: 0.35rem 0.9rem; font-size: 0.84rem;">
+              Surprise Me 🎲
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ====================================================================
+         VIEW 2: FAVOURITES PAGE / CRINGE MUSEUM
+         ==================================================================== -->
+    <section id="favouritesView" class="view-panel" role="tabpanel" aria-label="Saved Jokes Museum">
+      
+      <div class="favourites-container">
+        
+        <!-- Favourites Header -->
+        <div class="fav-header">
+          <div class="fav-title-wrap">
+            <h2>⭐ THE CRINGE MUSEUM</h2>
+            <p>Your personal hall of shame. Jokes you inexplicably found funny.</p>
+          </div>
+
+          <div class="fav-toolbar">
+            <input 
+              type="text" 
+              id="favSearchInput" 
+              class="fav-search-input" 
+              placeholder="🔍 Search saved cringe..." 
+              aria-label="Search saved jokes">
+
+            <select id="favCategoryFilter" class="neo-btn" style="padding: 0.55rem 0.85rem; font-size: 0.88rem;" aria-label="Filter saved jokes by category">
+              <option value="all">All Categories</option>
+              <option value="dad">👴 Dad Jokes</option>
+              <option value="pun">🥐 Silly Puns</option>
+              <option value="roast">🔥 Roast Me</option>
+            </select>
+
+            <button class="neo-btn" id="clearAllFavsBtn" style="background: #FFE0E0; color: #8A0000;" title="Clear all saved jokes">
+              🗑️ Clear All
+            </button>
+          </div>
+        </div>
+
+        <!-- Favourites Grid Container -->
+        <div class="fav-grid" id="favCardsGrid">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <!-- Empty State Container -->
+        <div class="fav-empty-state" id="favEmptyState" style="display: none;">
+          <div class="empty-state-icon">🗑️</div>
+          <h3>Your Cringe Vault is Empty!</h3>
+          <p>Are your standards really that high? Go hit that <strong>"Save the Cringe ⭐"</strong> button on some terrible jokes.</p>
+          <button class="neo-btn neo-btn-primary neo-btn-pill" id="backToGenBtn" style="padding: 0.75rem 1.6rem; font-size: 1rem;">
+            ← Back to Joke Generator
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- Retro Comic Footer -->
+    <footer class="site-footer">
+      <div class="footer-stickers">
+        <span class="footer-sticker">⚡ GEN-Z CERTIFIED</span>
+        <span class="footer-sticker">🥑 0% NUTRITIONAL VALUE</span>
+        <span class="footer-sticker">👾 RETRO COMIC EDITION</span>
+        <span class="footer-sticker">✨ NO COOKIES, JUST CRINGE</span>
+      </div>
+      <p>
+        <strong>Happiness Project — A Little Dose of Stupid</strong> &copy; 2026. Made with questionable judgment.
+      </p>
+      <p style="font-size: 0.78rem; color: #444;">
+        Disclaimer: If you groaned out loud, our mission is complete. No braincells were harmed in the making of this website.
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="jokes.js"></script>
+  <script src="audio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

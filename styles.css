@@ -1,0 +1,1239 @@
+/* ==========================================================================
+   Happiness Project — A Little Dose of Stupid
+   Retro Comic-Book + Gen Z Neobrutalism Design System
+   ========================================================================== */
+
+:root {
+  --yellow: #FFE600;
+  --yellow-hover: #FFF033;
+  --lavender: #C8B6FF;
+  --lavender-light: #E7DDFF;
+  --lavender-dark: #9D80FE;
+  --black: #121212;
+  --off-white: #FFFDF5;
+  --pure-white: #FFFFFF;
+  --coral-pink: #FF5E8E;
+  --neon-cyan: #00F0FF;
+  --neon-green: #25E27D;
+  --orange: #FF7B00;
+  --border-thick: 3.5px solid var(--black);
+  --border-medium: 2.5px solid var(--black);
+  --border-thin: 1.5px solid var(--black);
+  --shadow-main: 5px 5px 0px var(--black);
+  --shadow-hover: 7px 7px 0px var(--black);
+  --shadow-active: 1px 1px 0px var(--black);
+  --shadow-card: 6px 6px 0px var(--black);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+  --font-comic: 'Bangers', cursive, sans-serif;
+  --font-body: 'Fredoka', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--lavender);
+  color: var(--black);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+
+  /* Retro Halftone comic dot pattern background */
+  background-image: 
+    radial-gradient(#a78df7 15%, transparent 16%),
+    radial-gradient(#a78df7 15%, transparent 16%);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
+}
+
+/* Confetti Canvas */
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* App Wrapper */
+.app-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Top Notification Marquee Banner */
+.top-ticker {
+  background: var(--yellow);
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-main);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.45rem 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: marquee 26s linear infinite;
+}
+
+.ticker-content span {
+  margin-right: 2.5rem;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   Navigation & Header
+   ========================================================================== */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.brand-icon-box {
+  background: var(--yellow);
+  border: var(--border-thick);
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.85rem;
+  transform: rotate(-4deg);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex-shrink: 0;
+}
+
+.brand:hover .brand-icon-box {
+  transform: rotate(6deg) scale(1.08);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-comic);
+  font-size: 2.1rem;
+  letter-spacing: 1px;
+  line-height: 0.95;
+  text-shadow: 2px 2px 0px var(--off-white);
+}
+
+.brand-subtitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: var(--off-white);
+  border: var(--border-thin);
+  border-radius: var(--radius-pill);
+  padding: 0.1rem 0.6rem;
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  box-shadow: 2px 2px 0px var(--black);
+  transform: rotate(-1deg);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Button Neobrutalism Standards */
+.neo-btn {
+  font-family: var(--font-body);
+  font-weight: 700;
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-main);
+  background: var(--off-white);
+  color: var(--black);
+  padding: 0.6rem 1.15rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+  user-select: none;
+  text-decoration: none;
+}
+
+.neo-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.neo-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: var(--shadow-active);
+}
+
+.neo-btn-primary {
+  background: var(--yellow);
+}
+
+.neo-btn-primary:hover {
+  background: var(--yellow-hover);
+}
+
+.neo-btn-pink {
+  background: var(--coral-pink);
+  color: var(--pure-white);
+}
+
+.neo-btn-pill {
+  border-radius: var(--radius-pill);
+}
+
+.badge-counter {
+  background: var(--coral-pink);
+  color: var(--pure-white);
+  border: 2px solid var(--black);
+  border-radius: var(--radius-pill);
+  padding: 0.1rem 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+/* Navigation Tabs */
+.view-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--off-white);
+  padding: 0.35rem;
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-main);
+}
+
+.view-tab-btn {
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--black);
+  transition: all 0.15s ease;
+}
+
+.view-tab-btn.active {
+  background: var(--black);
+  color: var(--yellow);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero-section {
+  text-align: center;
+  margin: 1rem 0 2.25rem;
+  position: relative;
+}
+
+.hero-sticker-badge {
+  display: inline-block;
+  background: var(--neon-cyan);
+  border: var(--border-medium);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 1rem;
+  font-weight: 800;
+  font-size: 0.85rem;
+  box-shadow: 3px 3px 0px var(--black);
+  transform: rotate(-2deg);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-family: var(--font-comic);
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  line-height: 1.05;
+  color: var(--black);
+  margin-bottom: 0.85rem;
+  text-shadow: 4px 4px 0px var(--yellow), 6px 6px 0px var(--black);
+  letter-spacing: 1.5px;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #2b2b2b;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-subtitle .tagline-highlight {
+  background: var(--yellow);
+  padding: 0.1rem 0.5rem;
+  border: var(--border-thin);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  transform: rotate(1deg);
+  font-weight: 700;
+}
+
+/* Decorative Floating Comic Badges */
+.comic-badge-float {
+  position: absolute;
+  font-family: var(--font-comic);
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  padding: 0.35rem 0.75rem;
+  box-shadow: var(--shadow-main);
+  font-size: 1.1rem;
+  pointer-events: none;
+  z-index: 1;
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .comic-badge-float {
+    display: block;
+  }
+}
+
+.badge-pow {
+  top: 10px;
+  left: 2%;
+  background: var(--coral-pink);
+  color: white;
+  transform: rotate(-12deg);
+  animation: floatWiggle 4s ease-in-out infinite alternate;
+}
+
+.badge-cringe {
+  top: 25px;
+  right: 2%;
+  background: var(--yellow);
+  color: var(--black);
+  transform: rotate(10deg);
+  animation: floatWiggle 3.5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatWiggle {
+  0% { transform: translateY(0px) rotate(-10deg); }
+  100% { transform: translateY(-8px) rotate(-5deg); }
+}
+
+/* ==========================================================================
+   Joke-of-the-Day Newspaper Strip
+   ========================================================================== */
+.daily-joke-card {
+  background: var(--off-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  border-left: 12px solid var(--black);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.daily-joke-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 2px dashed var(--black);
+  padding-bottom: 0.65rem;
+}
+
+.daily-tag-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.daily-pill {
+  background: var(--yellow);
+  border: var(--border-thin);
+  border-radius: var(--radius-pill);
+  padding: 0.2rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.daily-stamp {
+  font-family: var(--font-comic);
+  background: var(--coral-pink);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: var(--border-thin);
+  transform: rotate(-3deg);
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.daily-joke-body {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.daily-joke-punchline {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  background: var(--lavender-light);
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--black);
+  margin-top: 0.35rem;
+}
+
+.daily-joke-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  padding-top: 0.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ==========================================================================
+   Category Selector Pills
+   ========================================================================== */
+.categories-wrapper {
+  margin-bottom: 1.75rem;
+  text-align: center;
+}
+
+.category-label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.65rem;
+  display: block;
+}
+
+.category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+}
+
+.cat-btn {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 0.6rem 1.25rem;
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  box-shadow: 4px 4px 0px var(--black);
+  background: var(--off-white);
+  color: var(--black);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.cat-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px var(--black);
+}
+
+.cat-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--black);
+}
+
+.cat-btn.active {
+  background: var(--yellow);
+  box-shadow: 4px 4px 0px var(--black);
+  outline: none;
+  transform: rotate(-1deg);
+}
+
+.cat-btn[data-cat="dad"].active {
+  background: #B4F8C8;
+}
+
+.cat-btn[data-cat="pun"].active {
+  background: #FFD166;
+}
+
+.cat-btn[data-cat="roast"].active {
+  background: var(--coral-pink);
+  color: white;
+}
+
+/* ==========================================================================
+   Main Joke Stage & Big Laugh Button
+   ========================================================================== */
+.generator-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Massive Make Me Laugh Button */
+.big-laugh-btn {
+  font-family: var(--font-comic);
+  font-size: clamp(1.6rem, 4.5vw, 2.3rem);
+  letter-spacing: 1.2px;
+  background: var(--yellow);
+  color: var(--black);
+  border: 4px solid var(--black);
+  border-radius: var(--radius-pill);
+  padding: 1.1rem 2.8rem;
+  box-shadow: 7px 7px 0px var(--black);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  transition: all 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.big-laugh-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transition: 0.5s;
+}
+
+.big-laugh-btn:hover::before {
+  left: 100%;
+}
+
+.big-laugh-btn:hover {
+  transform: translate(-3px, -3px) scale(1.02);
+  box-shadow: 9px 9px 0px var(--black);
+  background: var(--yellow-hover);
+}
+
+.big-laugh-btn:active {
+  transform: translate(4px, 4px) scale(0.98);
+  box-shadow: 2px 2px 0px var(--black);
+}
+
+.btn-emoji-bounce {
+  display: inline-block;
+  animation: emojiBounce 1.8s infinite ease-in-out;
+}
+
+@keyframes emojiBounce {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(15deg) scale(1.25); }
+}
+
+.btn-caption {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #333;
+  margin-top: -0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ==========================================================================
+   The Main Comic Joke Card
+   ========================================================================== */
+.joke-card-container {
+  width: 100%;
+  max-width: 720px;
+  position: relative;
+}
+
+.main-joke-card {
+  background: var(--pure-white);
+  border: 4px solid var(--black);
+  border-radius: 24px;
+  box-shadow: 8px 8px 0px var(--black);
+  padding: 2.2rem 2.2rem 1.75rem;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+}
+
+.main-joke-card.animating {
+  animation: cardSquish 0.4s ease;
+}
+
+@keyframes cardSquish {
+  0% { transform: scale(1); }
+  35% { transform: scale(0.96) rotate(-1.5deg); }
+  75% { transform: scale(1.02) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Comic Speech Bubble Tail */
+.bubble-tail {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 24px solid var(--black);
+  z-index: 1;
+}
+
+.bubble-tail::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -15px;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 19px solid var(--pure-white);
+}
+
+/* Card Top Pill & Stamp */
+.card-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.category-tag {
+  font-size: 0.88rem;
+  font-weight: 800;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-medium);
+  box-shadow: 2px 2px 0px var(--black);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tag-dad {
+  background: #B4F8C8;
+}
+
+.tag-pun {
+  background: #FFD166;
+}
+
+.tag-roast {
+  background: var(--coral-pink);
+  color: white;
+}
+
+.joke-id-badge {
+  font-family: var(--font-comic);
+  font-size: 1.05rem;
+  background: var(--lavender-light);
+  border: var(--border-thin);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.6rem;
+}
+
+/* Joke Content */
+.joke-setup {
+  font-size: clamp(1.28rem, 3.2vw, 1.7rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--black);
+  margin-bottom: 1.5rem;
+}
+
+.joke-punchline-box {
+  background: #FFFCE0;
+  border: 3px dashed var(--black);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.joke-punchline-text {
+  font-size: clamp(1.22rem, 3vw, 1.6rem);
+  font-weight: 800;
+  color: #121212;
+  line-height: 1.35;
+}
+
+.punchline-blur-cover {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 252, 224, 0.97);
+  backdrop-filter: blur(8px);
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: opacity 0.2s ease;
+}
+
+.punchline-blur-cover.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reveal-btn {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.95rem;
+  background: var(--yellow);
+  border: var(--border-medium);
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 1.1rem;
+  box-shadow: 3px 3px 0px var(--black);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.reveal-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Joke Attribution & Action Row */
+.card-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #E5E5E5;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.joke-author-info {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.card-action-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.action-icon-btn {
+  background: var(--off-white);
+  border: var(--border-medium);
+  border-radius: var(--radius-md);
+  box-shadow: 3px 3px 0px var(--black);
+  padding: 0.45rem 0.85rem;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s ease;
+}
+
+.action-icon-btn:hover {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 4px 4px 0px var(--black);
+}
+
+.action-icon-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--black);
+}
+
+.action-icon-btn.saved-active {
+  background: #FFE17D;
+  border-color: var(--black);
+  color: #7A4F00;
+}
+
+/* ==========================================================================
+   Rating System (I exhaled, That was good, I'm crying)
+   ========================================================================== */
+.rating-section {
+  background: var(--lavender-light);
+  border: var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  text-align: center;
+}
+
+.rating-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.rating-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.65rem;
+}
+
+.rating-btn {
+  font-family: var(--font-body);
+  background: var(--pure-white);
+  border: var(--border-medium);
+  border-radius: var(--radius-md);
+  box-shadow: 3px 3px 0px var(--black);
+  padding: 0.65rem 0.75rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.rating-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--black);
+  background: var(--off-white);
+}
+
+.rating-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--black);
+}
+
+.rating-btn.user-voted {
+  background: var(--yellow);
+  box-shadow: 3px 3px 0px var(--black);
+  transform: scale(1.02);
+  border-color: var(--black);
+}
+
+.rating-label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 800;
+}
+
+.rating-count {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #555;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-pill);
+}
+
+/* ==========================================================================
+   Favourites / Cringe Museum View
+   ========================================================================== */
+.view-panel {
+  display: none;
+}
+
+.view-panel.active {
+  display: block;
+}
+
+.favourites-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.fav-header {
+  background: var(--off-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fav-title-wrap h2 {
+  font-family: var(--font-comic);
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+}
+
+.fav-title-wrap p {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.fav-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.fav-search-input {
+  font-family: var(--font-body);
+  font-weight: 600;
+  border: var(--border-medium);
+  border-radius: var(--radius-pill);
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  background: white;
+  box-shadow: 2px 2px 0px var(--black);
+  outline: none;
+}
+
+.fav-search-input:focus {
+  background: #FFFDE0;
+}
+
+/* Favourites Grid */
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.fav-card {
+  background: var(--pure-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-main);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+
+.fav-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.fav-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.fav-card-setup {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--black);
+}
+
+.fav-card-punchline {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  background: #FFF9D2;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--black);
+  margin-bottom: 1rem;
+}
+
+.fav-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.65rem;
+  border-top: 1.5px dashed #DDD;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.fav-btn-group {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.fav-btn-sm {
+  border: var(--border-thin);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--off-white);
+  cursor: pointer;
+  box-shadow: 2px 2px 0px var(--black);
+  transition: all 0.1s ease;
+}
+
+.fav-btn-sm:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--black);
+}
+
+.fav-btn-sm:active {
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px var(--black);
+}
+
+.fav-btn-delete {
+  background: #FFD2D2;
+  color: #A00;
+}
+
+/* Empty State */
+.fav-empty-state {
+  text-align: center;
+  background: var(--off-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 3rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+  animation: emojiBounce 2.5s infinite ease-in-out;
+}
+
+.fav-empty-state h3 {
+  font-family: var(--font-comic);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.fav-empty-state p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 1.25rem;
+}
+
+/* ==========================================================================
+   Quirky Features: Cringe-O-Meter & Emergency Roast
+   ========================================================================== */
+.extras-strip {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.extra-box {
+  background: var(--off-white);
+  border: var(--border-thick);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-main);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.extra-icon {
+  font-size: 2.4rem;
+  background: var(--yellow);
+  border: var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  box-shadow: 3px 3px 0px var(--black);
+  flex-shrink: 0;
+}
+
+.extra-details h4 {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.extra-details p {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   Toast Notification System
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--yellow);
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  box-shadow: 5px 5px 0px var(--black);
+  padding: 0.65rem 1.4rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: toastSlideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: var(--black);
+  white-space: nowrap;
+}
+
+@keyframes toastSlideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  margin-top: 3.5rem;
+  padding-top: 1.75rem;
+  border-top: var(--border-thick);
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #2c2c2c;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer-stickers {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+
+.footer-sticker {
+  background: var(--off-white);
+  border: var(--border-thin);
+  border-radius: var(--radius-pill);
+  padding: 0.2rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  box-shadow: 2px 2px 0px var(--black);
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .site-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  
+  .brand {
+    justify-content: center;
+  }
+
+  .nav-actions {
+    justify-content: center;
+  }
+
+  .main-joke-card {
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+
+  .big-laugh-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+  }
+
+  .rating-options {
+    grid-template-columns: 1fr;
+  }
+
+  .fav-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
